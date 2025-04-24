@@ -15,29 +15,25 @@ The target audience of this training series is application developers who have a
 
 Click one of the labs below to get started.
 
-## Introduction
-
-[Introduction to Accelerated Computing](Introduction/Introduction_to_Accelerated_Computing/Introduction_to_Accelerated_Computing.ipynb)
-
 ## CUDA
 
-[Lab 1: Introduction to CUDA](01_Introduction_to_CUDA/01_Introduction_to_CUDA.ipynb)
+[Lab 1: Introduction to CUDA](ATLAS_CUDA_tutorial/01_Introduction_to_CUDA/01_Introduction_to_CUDA.ipynb)
 
-[Lab 2: Expose Parallelism](02_Expose_Parallelism/02_Expose_Parallelism.ipynb)
+[Lab 2: Expose Parallelism](ATLAS_CUDA_tutorial/02_Expose_Parallelism/02_Expose_Parallelism.ipynb)
 
-[Lab 3: Coalesce Memory Accesses](03_Coalesce_Memory_Accesses/03_Coalesce_Memory_Accesses.ipynb)
+[Lab 3: Coalesce Memory Accesses](ATLAS_CUDA_tutorial/03_Coalesce_Memory_Accesses/03_Coalesce_Memory_Accesses.ipynb)
 
-[Lab 4: Atomics and Reductions](04_Atomics_and_Reductions/04_Atomics_and_Reductions.ipynb)
+[Lab 4: Atomics and Reductions](ATLAS_CUDA_tutorial/04_Atomics_and_Reductions/04_Atomics_and_Reductions.ipynb)
 
-[Lab 5: Shared Memory](05_Shared_Memory/05_Shared_Memory.ipynb)
+[Lab 5: Shared Memory](ATLAS_CUDA_tutorial/05_Shared_Memory/05_Shared_Memory.ipynb)
 
-[Lab 6: Reductions Redux](06_Reductions_Redux/06_Reductions_Redux.ipynb)
+[Lab 6: Reductions Redux](ATLAS_CUDA_tutorial/06_Reductions_Redux/06_Reductions_Redux.ipynb)
 
-[Lab 7: Managed Memory](07_Managed_Memory/07_Managed_Memory.ipynb)
+[Lab 7: Managed Memory](ATLAS_CUDA_tutorial/07_Managed_Memory/07_Managed_Memory.ipynb)
 
-[Lab 8: Concurrency with Streams](08_Concurrency_with_Streams/08_Concurrency_with_Streams.ipynb)
+[Lab 8: Concurrency with Streams](ATLAS_CUDA_tutorial/08_Concurrency_with_Streams/08_Concurrency_with_Streams.ipynb)
 
-[Lab 9: Performance Analysis](09_Performance_Analysis/09_Performance_Analysis.ipynb)
+[Lab 9: Performance Analysis](ATLAS_CUDA_tutorial/09_Performance_Analysis/09_Performance_Analysis.ipynb)
 
 
 ## Heterogeneous and Accelerated Computing
