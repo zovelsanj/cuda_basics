@@ -7,6 +7,39 @@ Feel free to read them.
 
 No GPU knowledge is assumed for this module. Basic knowledge of Fortran or C/C++ is assumed.
 
+# NVIDIA HPC Training Series
+
+This series of labs serves as an introduction to NVIDIA's accelerated computing platform through the use of the [NVIDIA HPC SDK](https://developer.nvidia.com/hpc-sdk).
+
+The target audience of this training series is application developers who have an interest in high-performance computing. Participants are expected to have a basic understanding of C/C++ code, including for loops, conditional expressions, etc., and some prior experience writing C/C++ applications. Participants are also assumed to have basic familiarity with running at the command line in Linux, e.g. for compiling code, although it is not necessary.
+
+Click one of the labs below to get started.
+
+## Introduction
+
+[Introduction to Accelerated Computing](Introduction/Introduction_to_Accelerated_Computing/Introduction_to_Accelerated_Computing.ipynb)
+
+## CUDA
+
+[Lab 1: Introduction to CUDA](01_Introduction_to_CUDA/01_Introduction_to_CUDA.ipynb)
+
+[Lab 2: Expose Parallelism](02_Expose_Parallelism/02_Expose_Parallelism.ipynb)
+
+[Lab 3: Coalesce Memory Accesses](03_Coalesce_Memory_Accesses/03_Coalesce_Memory_Accesses.ipynb)
+
+[Lab 4: Atomics and Reductions](04_Atomics_and_Reductions/04_Atomics_and_Reductions.ipynb)
+
+[Lab 5: Shared Memory](05_Shared_Memory/05_Shared_Memory.ipynb)
+
+[Lab 6: Reductions Redux](06_Reductions_Redux/06_Reductions_Redux.ipynb)
+
+[Lab 7: Managed Memory](07_Managed_Memory/07_Managed_Memory.ipynb)
+
+[Lab 8: Concurrency with Streams](08_Concurrency_with_Streams/08_Concurrency_with_Streams.ipynb)
+
+[Lab 9: Performance Analysis](09_Performance_Analysis/09_Performance_Analysis.ipynb)
+
+
 ## Heterogeneous and Accelerated Computing
 
 Heterogeneous computing involves using multiple different types of processors to accomplish a task. In this module we'll be focusing on how to use both CPUs and GPUs together to solve a problem.
