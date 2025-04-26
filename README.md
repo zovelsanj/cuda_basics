@@ -78,7 +78,3 @@ In this module we have learned:
 ## Further Study
 
 [NVIDIA HPC Developer Site](https://developer.nvidia.com/hpc)
-
-## Lab Materials
-
-You can download this notebook using the `File > Download as > Notebook (.ipnyb)` menu item. Source code files can be downloaded from the `File > Download` menu item after opening them.
