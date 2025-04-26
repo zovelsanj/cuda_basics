@@ -1,4 +1,4 @@
-# Going through execrcises
+# Going through exercises
 Please go through [01_Introduction_to_CUDA.ipynb](01_Introduction_to_CUDA.ipynb) Jupyter notebook for more details on the exercises and CUDA basics. Here we will focus more on the output of the exercise and its working.
 ## Exercise 1: hello_world
 ```c
@@ -31,7 +31,7 @@ __global__ void hello() {
     printf("Hello from block: %u\n", block_id);
 }
 ```
-Its possible that you may get a pattern in the output, which may mislead if the GPU places the threads in an order. However, this is actually coincidental. The execution of GPU threads and blocks is indeed parallel and the order is not guaranteed. So, when the are blocks executed:
+Its possible that you may get a pattern in the output, which may mislead if the GPU places the threads in an order. However, this is actually coincidental. The execution of GPU threads and blocks is indeed parallel and the order is not guaranteed. So, when the blocks are executed:
 - They run in parallel (or as parallel as the GPU resources allow)
 - The order of execution is not guaranteed
 - The order of when their printf statements actually appear in the output is also not guaranteed
@@ -48,7 +48,7 @@ The reason you might see similar output patterns is because:
 - Number of concurrent processes
 - Available resources
 
-**NOTE:** Generally, block size is chosen a multiple of 32 (say, 256 / 32 = 8 warps per block). This ensures that all warps within the block are full, maximizing the efficiency of the SIMT execution on the SMs. Using block sizes that aren't multiples of 32 leads to partially filled warps and wasted execution resources.
+**NOTE:** Generally, block size is chosen as a multiple of 32 (say, 256 / 32 = 8 warps per block). This ensures that all warps within the block are full, maximizing the efficiency of the SIMT execution on the SMs. Using block sizes that aren't multiples of 32 leads to partially filled warps and wasted execution resources.
 
 ## Exercise 3: hello_with_threads
 Within a single block, threads are organized into groups called **warps** (typically 32 threads per warp on most NVIDIA GPUs). Threads within a warp execute in a pattern called SIMT (Single Instruction, Multiple Thread), which means they execute the same instruction at the same time.
@@ -68,7 +68,7 @@ int main(){
 The blocks (`block_id`) can execute in any order - which is why you see block IDs appearing randomly as discussed in [Exercise: hello_with_blocks](#exercise-2-hello_with_blocks). However, within each block, the threads are executed in a more structured way:
 Threads within the same warp execute in lockstep (together)
 Since here are 4 threads per block, they're all part of the same warp
-This is why you probably will see consistent order (0,1,2,3) within each block somethin like this:
+This is why you probably will see consistent order (0,1,2,3) within each block, something like this:
 ```sh
 Hello from block: 1, thread: 0
 Hello from block: 1, thread: 1
@@ -124,7 +124,7 @@ Hello from block: 2, thread: 63
 
 You can see a pattern where threads 0-31 print first, and then threads 32-63 print for each block. The GPU is processing these as two separate warps within the same block.
 
-Now at this point, it is possible that one might get confused (well, I was confused when I just started to learn CUDA programming) with the blocks and warps as they both incorporate the threads. So lets get things cleared up. Think of it this way:
+Now at this point, it is possible that one might get confused (well, I was confused when I just started to learn CUDA programming) with the blocks and warps as they both incorporate the threads. So let's get things cleared up. Think of it this way:
 ```sh
 Block 0                          Block 1
 ├── Warp 0 (threads 0-31)       ├── Warp 0 (threads 0-31)
@@ -154,7 +154,7 @@ You are probably familiar with `malloc()`, `free()` and `memcpy()` memory manage
 ```c
 cudaMalloc(&d_a, sizeof(int));
 ```
-It allocates memory for one integer on the device if not initalized. Remember this memory is only accessible from the device. You must use `cudaFree()` to deallocate the memory when done.
+It allocates memory for one integer on the device if not initialized. Remember this memory is only accessible from the device. You must use `cudaFree()` to deallocate the memory when done.
 It returns a `cudaError_t` to indicate success or failure, which is further discussed in the section [Exercise 5: error_handling](#exercise-5-error_handling). It returns cudaErrorInvalidValue if the size is 0 or negative.
 
 ```c
@@ -258,7 +258,7 @@ Thus 16 blocks are needed. The total number of threads launched is `gridDim * bl
 
 ## Exercise 7: matrix_multiplication
 
-Lets go through some basics that we haven't covered yet (lets ignore the non-relevant parts like timing, printing matrics, and error checks here). You will see, we have now initialized 2D blcoks and grods, because matrix multiplication is inherently a 2D problem. So, instead of organizing threads in a long 1D line (like in vector addition), it's more natural here to arrange them in 2D blocks.
+Let's go through some basics that we haven't covered yet (let's ignore the non-relevant parts like timing, printing matrices, and error checks here). You will see, we have now initialized 2D blocks and grids, because matrix multiplication is inherently a 2D problem. So, instead of organizing threads in a long 1D line (like in vector addition), it's more natural here to arrange them in 2D blocks.
 ```c
 dim3 block(block_size, block_size);
 dim3 grid((DSIZE+block.x-1)/block.x, (DSIZE+block.y-1)/block.y);
