@@ -269,3 +269,12 @@ dim3 grid((DSIZE+block.x-1)/block.x, (DSIZE+block.y-1)/block.y);
 ```
 
 `dim3` is a simple struct containing `x`, `y`, and `z` integer members, so it can handle 1D, 2D, and 3D data uniformly.
+
+## Further Study
+[An introduction to CUDA](https://devblogs.nvidia.com/easy-introduction-cuda-c-and-c/)
+
+[Another introduction to CUDA](https://devblogs.nvidia.com/even-easier-introduction-cuda/)
+
+[CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
+
+[CUDA Runtime API Documentation](https://docs.nvidia.com/cuda/index.htmlhttps://docs.nvidia.com/cuda/cuda-runtime-api/index.html)
