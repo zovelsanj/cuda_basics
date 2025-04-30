@@ -1,5 +1,9 @@
 # Going through exercises
 Please go through [01_Introduction_to_CUDA.ipynb](01_Introduction_to_CUDA.ipynb) Jupyter notebook for more details on the exercises and CUDA basics. Here we will focus more on the output of the exercise and its working.
+
+## Prerequisites
+No GPU knowledge is assumed for this lab. Basic knowledge of C/C++ is assumed.
+
 ## Exercise 1: hello_world
 ```c
 __global__ void hello() {
