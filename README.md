@@ -77,5 +77,7 @@ In this module we have learned:
 
 ## Further Study
 
-- [NVIDIA HPC Developer Site](https://developer.nvidia.com/hpc)
 - [NVIDIA CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
+- [An Easy Introduction to CUDA C and C++](https://developer.nvidia.com/blog/easy-introduction-cuda-c-and-c/)
+[An Even Easier Introduction to CUDA](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
+- [NVIDIA HPC Developer Site](https://developer.nvidia.com/hpc)
