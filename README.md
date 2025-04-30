@@ -1,5 +1,5 @@
 # Introduction to Accelerated Computing
-Introduction to basis of CUDA programming, including the ATLAS CUDA Workshop, April 2025.
+Introduction to basics of CUDA programming, including the ATLAS CUDA Workshop, April 2025.
 For more details, refer to the [References](./ATLAS_CUDA_tutorial/References) section, which contains the basics on GPUs and CUDA programming.
 Feel free to read them.
 
@@ -46,7 +46,7 @@ In common accelerated computing parlance, we refer to the CPU as the **host** an
 
 ![Accelerated Computing](images/accelerated_computing.png)
 
-In accelerated computing we take the compute intensive parts of the application code, usually the part of the code where we are spending the most time, and parallelize that for execution on a GPU. The remainder of the code (which may be the vast majority of the number of lines of code) remain on the CPU. Ideally, the part of the code that remains on the CPU is traditional serial code such as input/output operations and high level control flow. The part of the code that makes the most sense to put on the GPU is the operations involving a substantial amount of compute work (typically integer or floating point mathematical operations). In particular, the work that goes onto the GPU must be highly parallelizable. This division of labor reflects the fact that CPUs have complex compute cores (that can execute many types of instructions) but relatively few of them, while GPUs have simple compute cores (that execute a more limited instruction set) but relatively many of them. A modern high end server class CPU typically has on the order of tens of cores, while a modern high end server class GPU has thousands of cores, so we really must adopt some method of parallel computing to effectively use the GPU.
+In accelerated computing we take the compute intensive parts of the application code, usually the part of the code where we are spending the most time, and parallelize that for execution on a GPU. The remainder of the code (which may be the vast majority of the number of lines of code) remains on the CPU. Ideally, the part of the code that remains on the CPU is traditional serial code such as input/output operations and high level control flow. The part of the code that makes the most sense to put on the GPU is the operations involving a substantial amount of compute work (typically integer or floating point mathematical operations). In particular, the work that goes onto the GPU must be highly parallelizable. This division of labor reflects the fact that CPUs have complex compute cores (that can execute many types of instructions) but relatively few of them, while GPUs have simple compute cores (that execute a more limited instruction set) but relatively many of them. A modern high end server class CPU typically has on the order of tens of cores, while a modern high end server class GPU has thousands of cores, so we really must adopt some method of parallel computing to effectively use the GPU.
 
 ![GPU Devotes More Transistors to Data Processing](images/gpu-devotes-more-transistors-to-data-processing.png)
 
@@ -79,5 +79,5 @@ In this module we have learned:
 
 - [NVIDIA CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
 - [An Easy Introduction to CUDA C and C++](https://developer.nvidia.com/blog/easy-introduction-cuda-c-and-c/)
-[An Even Easier Introduction to CUDA](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
+- [An Even Easier Introduction to CUDA](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
 - [NVIDIA HPC Developer Site](https://developer.nvidia.com/hpc)

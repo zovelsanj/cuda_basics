@@ -1,7 +1,7 @@
 # Going through exercises
 Please go through [02_Expose_Parallelism.ipynb](02_Expose_Parallelism.ipynb) Jupyter notebook for more details on this tutorial. Here we will focus more on the output of the exercise and its working.
 
-The primary concept we focus on this tutorial is **in order to use GPUs effectively, you must expose massive parallelism** in your program. Specifically, **your program must launch a lot of threads**.
+The primary concept we focus on in this tutorial is **in order to use GPUs effectively, you must expose massive parallelism** in your program. Specifically, **your program must launch a lot of threads**.
 
 ## Prerequisites
 It is assumed that participants understand the fundamental principles of working with CUDA code, including:
@@ -10,10 +10,10 @@ It is assumed that participants understand the fundamental principles of working
 - Basic memory management (`cudaMalloc()`, `cudaFree()`, `cudaMemcpy`)
 - How to compile and run CUDA code
 
-**NOTE:** The number of SMs (streaming multiprocessors) has been growing substantially over time, so we are forced to write code that is flexible enough to run efficiently even on massively parallel architectures. For example, the NVIDIA A100 GPU has 108 SMs compared to V100's 80, and well written CUDA code developed for V100 should be able to scale effectively to A100 without requiring anything other than recompiling.
+**NOTE:** The number of SMs (streaming multiprocessors) has been growing substantially over time, so we are forced to write code that is flexible enough to run efficiently even on massively parallel architectures. For example, the NVIDIA A100 GPU has 108 SMs compared to V100's 80, and well-written CUDA code developed for V100 should be able to scale effectively to A100 without requiring anything other than recompiling.
 
 ## Exercise 1: vector_add
-In my case I am using [Nsight compute profiler](https://developer.nvidia.com/tools-overview) for analyzing the performance. Its possible that you may require `sudo` access to run the `ncu` profiler. For example in my case, without sudo access, the error shows `The user does not have permission to access NVIDIA GPU Performance Counters on the target device 0`:
+In my case, I am using [Nsight compute profiler](https://developer.nvidia.com/tools-overview) for analyzing the performance. It's possible that you may require `sudo` access to run the `ncu` profiler. For example, in my case, without sudo access, the error shows `The user does not have permission to access NVIDIA GPU Performance Counters on the target device 0`:
 ```cpp
 ncu ./test 
 ==PROF== Connected to process 837557 (/home/sanjay42/sanjay/cuda/ATLAS_CUDA_tutorial/CUDA/02_Expose_Parallelism/test)
@@ -65,9 +65,9 @@ C[0] = 1.234571
           Start by analyzing DRAM in the Memory Workload Analysis section.                                              
 ```
 
-See the details as above. This should now show you detailed GPU performance metrics. Lets go through each of them.
+See the details as above. This should now show you detailed GPU performance metrics. Let's go through each of them.
 
-1. **DRAM Frequency (cycle/nsecond):** This shows the clock frequency of the GPU's DRAM memory. In the above case it's around 8.68 cycles per nanosecond. This is a measure of how fast the memory subsystem is running.
+1. **DRAM Frequency (cycle/nsecond):** This shows the clock frequency of the GPU's DRAM memory. In the above case, it's around 8.68 cycles per nanosecond. This is a measure of how fast the memory subsystem is running.
 
 2. **SM Frequency (cycle/nsecond):** This shows the clock frequency of the Streaming Multiprocessors (SMs). Here, it's around 2.29 cycles per nanosecond. This is the core compute frequency of the GPU.
 
@@ -77,13 +77,13 @@ See the details as above. This should now show you detailed GPU performance metr
 
 5. **DRAM Throughput (%):** Similar to Memory Throughput, but specifically for DRAM operations. Also at 91.91%, indicating efficient memory access patterns.
 
-6. **Duration (msecond):** The absolute time taken by the kernel in milliseconds. In this case it's 1.52 milliseconds. This is the most direct measure of performance.
+6. **Duration (msecond):** The absolute time taken by the kernel in milliseconds. In this case, it's 1.52 milliseconds. This is the most direct measure of performance.
 
 7. **L1/TEX Cache Throughput (%):** Measures how effectively you're using the L1 cache and texture cache. At 10.39%, suggesting there's room for improvement in cache utilization. Lower numbers here might indicate cache misses or inefficient memory access patterns.
 
-8. **L2 Cache Throughput (%):** Measures how effectively you're using the L2 cache. At 18.06%, indicating moderate L2 cache utilization. Higher numbers would suggest better cache reuse
+8. **L2 Cache Throughput (%):** Measures how effectively you're using the L2 cache. At 18.06%, indicating moderate L2 cache utilization. Higher numbers would suggest better cache reuse.
 
-9. **SM Active Cycles (cycle):** The number of cycles where the SMs were actively doing work. Here, it's 3,449,776 cycles. This helps understand how much of the time the compute units were busy
+9. **SM Active Cycles (cycle):** The number of cycles where the SMs were actively doing work. Here, it's 3,449,776 cycles. This helps understand how much of the time the compute units were busy.
 
 10. **Compute (SM) Throughput (%):** Measures how much of the theoretical peak compute performance you're achieving. At 5.34%, indicating that the kernel is not compute-bound. This suggests the kernel is likely memory-bound (which is typical for vector addition).
 
@@ -97,7 +97,7 @@ This message indicates that the kernel is performing well (>80% utilization). Ho
 **SEE** section [Exercise: Grid and Block Size Experimentation](02_Expose_Parallelism.ipynb##Exercise:-Grid-and-Block-Size-Experimentation
 ) of 02_Expose_Parallelism.ipynb, for more details on experimentation with `blocks` and `threads` in `vector_add.cu` script.
 
-Remember we want to use as much parallel processing as possible so we don't want to use less number of threads per block, say 32. However, we should also take into account that the maximum numbe rof threads per block allowed by say NVIDIA GPUs is typically 1024. So if you exceed this number, say
+Remember we want to use as much parallel processing as possible, so we don't want to use fewer threads per block, say 32. However, we should also take into account that the maximum number of threads per block allowed by NVIDIA GPUs is typically 1024. So if you exceed this number, say
 ```cpp
 int blocks = 80;
 int threads = 2048;
@@ -114,7 +114,7 @@ Fatal error: kernel launch failure (invalid configuration argument at exercises/
 ==WARNING== Profiling kernels launched by child processes requires the --target-processes all option.
 ```
 
-So the question is, why does this limit exists? The reasons are:
+So the question is, why does this limit exist? The reasons are:
 - Each block needs to fit within the SM's resources (registers, shared memory)
 - The hardware is designed to efficiently schedule and manage blocks of up to 1024 threads
 - This limit ensures proper resource allocation and scheduling
@@ -128,10 +128,10 @@ printf("Current device: %d\n", deviceid);
 cudaDeviceProp deviceProp;
 cudaGetDeviceProperties(&deviceProp, deviceid);
 ```
-By default, the `deviceid` is 0. Then we can programatically try to optimize the performance by using
+By default, the `deviceid` is 0. Then we can programmatically try to optimize the performance by using
 - all available SMs
 - maximum number of blocks each SM can handle
-- maximum number of threads per blocks
+- maximum number of threads per block
 
 ```cpp
 int blocks = deviceProp.multiProcessorCount * deviceProp.maxBlocksPerMultiProcessor;
@@ -150,10 +150,10 @@ kernel<<<N,M>>>();
 
 where `N` is the number of blocks and `M` is the number of threads per block.
 
-We've already suggested that the primary answer is that we want to launch many threads. (The total number of threads in a grid/kernel launch is simply `N * M`.) Why is it that the GPU needs to have a lot of threads from a performance perspective? Let's discuss about some relevant facts:
+We've already suggested that the primary answer is that we want to launch many threads. (The total number of threads in a grid/kernel launch is simply `N * M`.) Why is it that the GPU needs to have a lot of threads from a performance perspective? Let's discuss some relevant facts:
 - Instructions are issued (warp-wide) in order
-- A thread stalls when one of the operands (input data) isn’t ready
-  - Note that a memory read by itself doesn’t generally stall execution (we can issue a read instruction, and then go on and do other work)
+- A thread stalls when one of the operands (input data) isn't ready
+  - Note that a memory read by itself doesn't generally stall execution (we can issue a read instruction, and then go on and do other work)
 - Latency is hidden by switching threads
   - Global memory latency: >100 cycles  (varies by architecture/design)
   - Arithmetic latency: <100 cycles  (varies by architecture/design)
