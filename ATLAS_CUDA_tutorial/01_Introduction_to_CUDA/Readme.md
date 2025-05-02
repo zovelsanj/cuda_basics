@@ -161,6 +161,8 @@ cudaMalloc(&d_a, sizeof(int));
 It allocates memory for one integer on the device if not initialized. Remember this memory is only accessible from the device. You must use `cudaFree()` to deallocate the memory when done.
 It returns a `cudaError_t` to indicate success or failure, which is further discussed in the section [Exercise 5: error_handling](#exercise-5-error_handling). It returns cudaErrorInvalidValue if the size is 0 or negative.
 
+**NOTE:** To be more specific, `cudaMalloc()` allocates the **global** memory in DRAM (global memory is a logical memory while DRAM is a physical memory, but they can be used interchangeably), which is accessible by all GPU threads. Global memory has relatively high latency (measured in the hundreds of clock cycles) -- it takes a relatively long time for data to be loaded into registers. This latency can often be a performance limiter for our code; we need to hide this latency by switching to other available work, which requires us to have sufficient exposed parallelism. We will learn about this more in [tutorial 2](../02_Expose_Parallelism/Readme.md).
+
 ```c
 cudaMemcpy(d_a, a, sizeof(int), cudaMemcpyHostToDevice)
 ```
