@@ -1,0 +1,3 @@
+PluginName: MyNvml
+ExecutablePath: mynvml_plugin
+Description: "Collects NVML metrics"
